@@ -30,7 +30,7 @@ class Shape():
         if self.x + self.width - 1 < 11:
             count = 0
             for y in range(self.height):
-                if grid[self.y + y][self.x + 1] == 0:
+                if grid[self.y + y][self.x + self.width] == 0:
                     count += 1
             if count == 2:
                 for y in range(self.height):
@@ -73,7 +73,9 @@ def row_clear():
             if count == 12:
                 for xtemp in range(12):
                     grid[y][xtemp] = 0
-                row_gravity()
+    row_gravity()
+
+
 
 
 

@@ -61,7 +61,7 @@ while True:
     mw.update()
 
     #creating new shape when there's nowhere to move below
-    if shape.y == 23 - shape.height + 1 or grid[shape.y + shape.height][shape.x] != 0 or grid[shape.y + shape.height][shape.x + shape.width] != 0:
+    if shape.y == 23 - shape.height + 1 or grid[shape.y + shape.height][shape.x] != 0:
         shape.y = 0
         row_clear()
 
