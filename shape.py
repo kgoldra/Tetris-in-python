@@ -1,17 +1,32 @@
 class Shape():
-    def __init__(self):
+    shapes = [
+        "straight",
+        "box",
+    ]
+
+    def __init__(self, shape):
         self.x = 5
         self.y = 0
-        self.color = 1
-        self.shape = [[1,1],
-                      [1,1]]
-        self.height = len(self.shape)
-        self.width = len(self.shape[0])
 
-    def box(self):
-        shape = [[0, 0],
-                 [0, 0]]
-        color = 4
+
+        if shape == 'straight':
+            self.color = 1
+            self.shape = [[1],
+                          [1],
+                          [1],
+                          [1]]
+            self.height = len(self.shape)
+            self.width = len(self.shape[0])
+
+        elif shape == 'box':
+            self.color = 4
+            self.shape = [[1, 1],
+                          [1, 1]]
+            self.height = len(self.shape)
+            self.width = len(self.shape[0])
+
+
+
 
     def move_left(self, grid):
         if self.x > 0:
@@ -19,7 +34,7 @@ class Shape():
             for y in range(self.height):
                 if grid[self.y + y][self.x - 1] == 0:
                     count += 1
-            if count == 2:
+            if count == self.height:
                 for y in range(self.height):
                     for x in range(self.width):
                         grid[self.y + y][self.x + x] = 0
@@ -32,7 +47,7 @@ class Shape():
             for y in range(self.height):
                 if grid[self.y + y][self.x + self.width] == 0:
                     count += 1
-            if count == 2:
+            if count == self.height:
                 for y in range(self.height):
                     for x in range(self.width):
                         grid[self.y + y][self.x + x] = 0

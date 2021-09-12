@@ -1,5 +1,6 @@
 import turtle
 from shape import *
+import random
 
 mw = turtle.Screen()
 mw.title("Tetris")
@@ -13,6 +14,11 @@ pen.speed(0)
 pen.shape("square")
 pen.setundobuffer(None)
 
+shapes = Shape.shapes
+
+shape_chosen = shapes[random.randint(0, 1)]
+
+
 
 def draw_grid(pen, grid):
     pen.clear()
@@ -22,8 +28,8 @@ def draw_grid(pen, grid):
     colors = ["white",
               "cyan",
               "blue",
+              "pink",
               "orange",
-              "yellow",
               "green",
               "purple",
               "red"]
@@ -41,7 +47,7 @@ def draw_grid(pen, grid):
 
 
 # shape creation
-shape = Shape()
+shape = Shape(shape_chosen)
 
 #putting the shape in the grid
 grid[shape.y][shape.x] = shape.color
@@ -61,8 +67,10 @@ while True:
     mw.update()
 
     #creating new shape when there's nowhere to move below
-    if shape.y == 23 - shape.height + 1 or grid[shape.y + shape.height][shape.x] != 0:
+    if shape.y == 23 - shape.height + 1 or grid[shape.y + shape.height][shape.x] != 0 or grid[shape.y + shape.height][shape.x + shape.width - 1] != 0:
         shape.y = 0
+        shape_chosen = shapes[random.randint(0, 1)]
+        shape = Shape(shape_chosen)
         row_clear()
 
 #something wrong below (couldn't spawn block at 0 y = 0)
@@ -79,15 +87,6 @@ while True:
             for y in range(shape.height):
                 for x in range(shape.width):
                     grid[shape.y + y][shape.x + x] = shape.color
-#            grid[shape.y][shape.x] = shape.color
-#            grid[shape.y-1][shape.x] = 0
-
-
-#        elif shape.y+1 == 23:
-#            shape.y += 1
-#            grid[shape.y][shape.x] = shape.color
-#            grid[shape.y - 1][shape.x] = 0
-
 
     draw_grid(pen, grid)
 
