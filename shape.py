@@ -40,7 +40,7 @@ class Shape():
                         grid[self.y + y][self.x + x] = 0
                 self.x -= 1
 
-#something wrong here
+
     def move_right(self, grid):
         if self.x + self.width - 1 < 11:
             count = 0
@@ -54,7 +54,21 @@ class Shape():
                 self.x += 1
                 print("moving right")
 
+#a bit buggy but work
+    def rotation(self, grid):
+        for y in range(self.height):
+            for x in range(self.width):
+                grid[self.y + y][self.x + x] = 0
 
+        temp = self.height
+        self.height = self.width
+        self.width = temp
+
+        for y in range(self.height):
+            for x in range(self.width):
+                grid[self.y + y][self.x + x] = self.color
+
+#someting wrong here
     def move_bot(self, grid):
         boty = 22
         while grid[boty][self.x] != 0:

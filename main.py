@@ -61,6 +61,7 @@ mw.listen()
 mw.onkey(lambda: shape.move_left(grid), "a")
 mw.onkey(lambda: shape.move_right(grid), "d")
 mw.onkey(lambda: shape.move_bot(grid), "s")
+mw.onkey(lambda: shape.rotation(grid), "space")
 
 #main game loop
 while True:
